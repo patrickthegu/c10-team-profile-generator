@@ -5,8 +5,9 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+const generateHTML = require('./lib/generateHTML');
 
-// Array to store information for the whole team
+// Array to store information for the whole team data and 
 const team = [];
 
 // Arrays to store questions for each type of employee
@@ -163,24 +164,6 @@ const internQuestions = [
     }
 ];
 
-const employeeQuestions = [
-    {
-        type: 'confirm',
-        name: 'addEmployee',
-        message: 'Do you want to add an employee?'        
-    },
-    {
-        
-        type: 'list',
-        name: 'typeEmployee',
-        message: 'What type of employee do you want to add?',
-        choices: [
-            'Engineer',
-            'Intern'
-        ]
-    }
-];
-
 // functions to add employee data to team array
 async function addManager(){
     let managerResponse = await inquirer.prompt(managerQuestions);
@@ -188,6 +171,8 @@ async function addManager(){
     let managerProfile = new Manager(managerResponse.name, managerResponse.id, managerResponse.email, managerResponse.officeNumber);
 
     team.push(managerProfile);
+
+    managerProfile.getName();
 
     console.log(`${managerProfile.name} has been added to the team`);
 };
@@ -209,14 +194,14 @@ async function addIntern(){
 
     team.push(internProfile);
 
-    console.log(`${managerProfile.name} has been added to the team`);
+    console.log(`${internProfile.name} has been added to the team`);
 };
 
 async function addEmployee(){
     let confirmAdd = {
             type: 'confirm',
             name: 'addEmployee',
-            message: 'Do you want to add an employee?'        
+            message: 'Do you want to add an employee?',
         };
     
     let type = {
@@ -246,13 +231,23 @@ async function addEmployee(){
     }else {
         return;
     }
+};
+
+// function generate
+
+function writeToFile(fileName, data) {
+    return fs.writeFile(fileName, data, err => {if (err){
+        console.log(err)}
+    }
+        )
 }
 
 // Function to initialize app
 async function init() {
     await addManager();
     await addEmployee();
-    // fs.writeFile('dist/index.html', generateHTML(team));
+    let html = generateHTML(team);
+    writeToFile('dist/index.html', html);
 }
 
 // Function call to initialize app
