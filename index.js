@@ -164,7 +164,7 @@ const internQuestions = [
     }
 ];
 
-// functions to add employee data to team array
+// functions to add employee data for each specific role to team array
 async function addManager(){
     let managerResponse = await inquirer.prompt(managerQuestions);
 
