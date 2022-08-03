@@ -1,0 +1,52 @@
+.heading{
+    display: block;
+    text-align: center;
+    background-color: Red;
+    color: white;
+}
+
+.profileContainer{
+    width: 150px;
+    margin: 10px;
+    display: inline-block;
+    border: 1px solid black;
+}
+
+.profileHeading{
+    background-color: royalblue;
+    color: white;
+}
+
+.profileContents{
+    border-top: 1px solid black;
+}
+
+.name{
+
+}
+
+.role{
+
+}
+
+
+.id{
+    border-bottom: 1px solid black;
+    
+}
+
+.email{
+    border-bottom: 1px solid black;
+}
+
+.office{
+    
+}
+
+.github{
+    
+}
+
+.school{
+    
+}
